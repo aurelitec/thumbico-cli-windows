@@ -61,11 +61,29 @@ namespace ThumbicoCLI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Icon saved as {0} √.
+        /// </summary>
+        internal static string IconSavedAs {
+            get {
+                return ResourceManager.GetString("IconSavedAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Processing {0}....
         /// </summary>
         internal static string Processing {
             get {
                 return ResourceManager.GetString("Processing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thumbnail saved as {0} √.
+        /// </summary>
+        internal static string ThumbnailSavedAs {
+            get {
+                return ResourceManager.GetString("ThumbnailSavedAs", resourceCulture);
             }
         }
     }

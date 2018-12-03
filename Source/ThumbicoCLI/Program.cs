@@ -14,7 +14,9 @@ namespace ThumbicoCLI
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Drawing.Imaging;
     using System.Reflection;
+    using System.Text;
     using Mono.Options;
 
     /// <summary>
@@ -39,8 +41,9 @@ namespace ThumbicoCLI
             {
                 { "w|width:", "the width of the thumbnail.", (int v) => maker.Width = v },
                 { "h|height:", "the height of the thumbnail.", (int v) => maker.Height = v },
-                { "d|dir|directory:", "the output directory.", v => maker.OutputDirectory = v },
-                { "e|ext|extension:", "the extension.", v => maker.Extension = v },
+                { "d|outdir:", "the output directory.", v => maker.OutputDirectory = v },
+                { "n|outname:", "the output name.", v => maker.OutputName = v },
+                { "f|format:", "image format", (ImageFormat v) => maker.ImageFormat = v },
 
                 // flags
                 { "rf|ResizeToFit", "ResizeToFit",                   v => maker.Flags |= ThumbnailFlags.ResizeToFit },
@@ -80,6 +83,8 @@ namespace ThumbicoCLI
         /// <param name="args">The command line arguments.</param>
         private static void Main(string[] args)
         {
+            // Console.OutputEncoding = System.Text.Encoding.UTF8;
+
             // Write the program header with the program name, version, copyright, license
             Console.WriteLine(@"
   _____ _                     _     _              ____ _     ___ 
