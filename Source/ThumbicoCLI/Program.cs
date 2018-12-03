@@ -106,6 +106,20 @@ namespace ThumbicoCLI
                 Program.maker.Prepare();
                 Program.maker.Make(files);
             }
+
+            if (Console.IsInputRedirected)
+            {
+                string line;
+                do
+                {
+                    line = Console.ReadLine();
+                    if (line != null)
+                    {
+                        Program.maker.Make(line);
+                    }
+                }
+                while (line != null);
+            }
         }
     }
 }

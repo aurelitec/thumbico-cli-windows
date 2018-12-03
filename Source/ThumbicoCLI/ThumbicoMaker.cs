@@ -91,6 +91,7 @@ namespace ThumbicoCLI
             Console.WriteLine("Width: " + this.Width.ToString());
             Console.WriteLine("Height: " + this.Height.ToString());
             Console.WriteLine("Flags: " + this.Flags.ToString());
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -100,10 +101,21 @@ namespace ThumbicoCLI
         public void Make(string path)
         {
             // Get the absolute path for the specified path string
-            path = Path.GetFullPath(path);
+            try
+            {
+                path = Path.GetFullPath(path);
+            }
+            catch (Exception e)
+            {
+                // Output any exceptions and return
+                Console.WriteLine(Properties.Resources.Processing, path);
+                Console.WriteLine(e.Message);
+                Console.WriteLine();
+                return;
+            }
 
             // Tell the console user we are starting to process the current source file
-            Console.WriteLine("Processing " + path + "...");
+            Console.WriteLine(Properties.Resources.Processing, path);
 
             // MAIN FUNCTIONALITY! Try to generate the thumbail or icon
             bool isIcon;
@@ -116,13 +128,15 @@ namespace ThumbicoCLI
                 return;
             }
 
-            // Where are we saving the thumbnail: in the global output directory, or in the directory
-            // of the source file?
-            string directory = string.IsNullOrEmpty(this.OutputDirectory) ?
-                Path.GetDirectoryName(path) : this.OutputDirectory;
+            // Where are we saving the thumbnail: in the global output directory, or in the directory of the source file?
+            string directory = string.IsNullOrEmpty(this.OutputDirectory) ? Path.GetDirectoryName(path) : this.OutputDirectory;
 
             // Get the full path and name where to save the generated thumbnail
-            string thumbPath = Path.Combine(directory, Path.ChangeExtension(Path.GetFileName(path), this.Extension));
+            string thumbFileName = Path.GetFileName(path);
+            if (string.IsNullOrEmpty(thumbFileName)) thumbFileName = "thumbicon";
+
+            string thumbPath = Path.Combine(directory, Path.ChangeExtension(thumbFileName, this.Extension));
+            Console.WriteLine("PATH" + Path.GetFileName(path));
 
             // Save the thumbnail in the correct image file format
             bitmap.Save(thumbPath, this.ThumbImageFormat);
