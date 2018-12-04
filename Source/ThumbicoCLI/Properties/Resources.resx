@@ -123,8 +123,11 @@
   <data name="FailedFullPath" xml:space="preserve">
     <value>Failed to get the absolute path</value>
   </data>
+  <data name="FailedGet" xml:space="preserve">
+    <value>Failed to get thumbicon</value>
+  </data>
   <data name="FailedSave" xml:space="preserve">
-    <value>Failed to save the thumbicon image</value>
+    <value>Failed to save thumbicon</value>
   </data>
   <data name="Processing" xml:space="preserve">
     <value>Processing {0}...</value>

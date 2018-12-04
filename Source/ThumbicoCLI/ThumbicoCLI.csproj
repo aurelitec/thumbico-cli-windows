@@ -55,7 +55,6 @@
     <Compile Include="ThumbicoMaker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShellThumbnail.cs" />
     <Compile Include="Utils\ImagingUtils.cs" />
     <Compile Include="Utils\Utils.cs" />
   </ItemGroup>

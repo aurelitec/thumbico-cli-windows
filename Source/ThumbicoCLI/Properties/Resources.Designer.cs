@@ -79,7 +79,16 @@ namespace ThumbicoCLI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to save the thumbicon image.
+        ///   Looks up a localized string similar to Failed to get thumbicon.
+        /// </summary>
+        internal static string FailedGet {
+            get {
+                return ResourceManager.GetString("FailedGet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save thumbicon.
         /// </summary>
         internal static string FailedSave {
             get {

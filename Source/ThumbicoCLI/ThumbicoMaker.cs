@@ -103,18 +103,16 @@ namespace ThumbicoCLI
             // Tell the console user we are starting to process the current source file
             Console.WriteLine(Resources.Processing, sourcePath);
 
-            // MAIN FUNCTIONALITY! Try to generate the thumbail or icon
-            // Bitmap bitmap = ShellThumbnail.GetThumbnail(sourcePath, this.Width, this.Height, this.Flags, out bool isIcon);
-            BitmapSource bitmap = ShellThumbnail.GetThumbnail(sourcePath, this.Width, this.Height, this.Flags);
-
-            // There was an error generating the thumnail
-            if (bitmap == null)
+            // (Main functionality!) Try to generate the thumbail or icon
+            BitmapSource bitmap;
+            try
             {
-
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Failed to generate the thumbnail/icon!");
-                Console.ResetColor();
-                Console.WriteLine();
+                bitmap = ShellThumbnail.GetImage(sourcePath, this.Width, this.Height, this.Flags);
+            }
+            catch (Exception e)
+            {
+                // Output any exceptions and return
+                Utils.WriteError(Resources.FailedGet, e.Message);
                 return;
             }
 
