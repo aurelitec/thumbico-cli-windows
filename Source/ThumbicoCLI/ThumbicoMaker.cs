@@ -97,8 +97,7 @@ namespace ThumbicoCLI
             {
                 // Output any exceptions and return
                 Console.WriteLine(Resources.Processing, sourcePath);
-                Console.WriteLine(e.Message);
-                Console.WriteLine();
+                Utils.WriteError(Resources.FailedFullPath, e.Message);
                 return;
             }
 
@@ -111,6 +110,7 @@ namespace ThumbicoCLI
             // There was an error generating the thumnail
             if (bitmap == null)
             {
+
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Failed to generate the thumbnail/icon!");
                 Console.ResetColor();
@@ -118,10 +118,10 @@ namespace ThumbicoCLI
                 return;
             }
 
-            // Where are we saving the thumbnail: in the global output directory, or in the directory of the source file?
+            // Are we saving the thumbicon in an output directory, or in the directory of the source file?
             string thumbiconDirectory = string.IsNullOrEmpty(this.OutputDirectory) ? Path.GetDirectoryName(sourcePath) : this.OutputDirectory;
 
-            // Get the full path and name where to save the generated thumbnail
+            // Resolve the thumbicon file name by replacing tags with their actual value
             string thumbiconName = this.OutputName
                 .Replace("{n}", Path.GetFileNameWithoutExtension(sourcePath))
                 .Replace("{e}", Path.GetExtension(sourcePath))
@@ -129,24 +129,22 @@ namespace ThumbicoCLI
                 .Replace("{w}", bitmap.Width.ToString())
                 .Replace("{h}", bitmap.Height.ToString());
 
-            string thumbiconPath = Path.ChangeExtension(Path.Combine(thumbiconDirectory, thumbiconName), this.outputExtension);
+            // Add the file extension
+            string thumbiconPath = $"{Path.Combine(thumbiconDirectory, thumbiconName)}.{this.outputExtension}";
 
-            // Save the thumbnail in the correct image file format
+            // Save the thumbicon in the correct image file format
             try
             {
                 bitmap.Save(thumbiconPath, this.ImageFormat);
             }
             catch (Exception e)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Failed to save the thumbnail/icon!");
-                Console.ResetColor();
-                Console.WriteLine(e.Message);
-                Console.WriteLine();
+                // Output any exceptions and return
+                Utils.WriteError(Resources.FailedSave, e.Message);
                 return;
             }
 
-            // Inform the user that the thumbnail was saved
+            // Inform the user that the thumbicon image was saved
             Console.WriteLine(isIcon ? Resources.IconSavedAs : Resources.ThumbnailSavedAs, thumbiconPath);
             Console.WriteLine();
         }

@@ -61,6 +61,33 @@ namespace ThumbicoCLI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  ERROR .
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to get the absolute path.
+        /// </summary>
+        internal static string FailedFullPath {
+            get {
+                return ResourceManager.GetString("FailedFullPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to save the thumbicon image.
+        /// </summary>
+        internal static string FailedSave {
+            get {
+                return ResourceManager.GetString("FailedSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Icon saved as {0} √.
         /// </summary>
         internal static string IconSavedAs {
