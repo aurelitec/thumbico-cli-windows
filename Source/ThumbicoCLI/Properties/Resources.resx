@@ -126,13 +126,10 @@
   <data name="FailedSave" xml:space="preserve">
     <value>Failed to save the thumbicon image</value>
   </data>
-  <data name="IconSavedAs" xml:space="preserve">
-    <value>Icon saved as {0} √</value>
-  </data>
   <data name="Processing" xml:space="preserve">
     <value>Processing {0}...</value>
   </data>
-  <data name="ThumbnailSavedAs" xml:space="preserve">
-    <value>Thumbnail saved as {0} √</value>
+  <data name="ThumbiconSavedAs" xml:space="preserve">
+    <value>Thumbicon saved as {0} √</value>
   </data>
 </root>

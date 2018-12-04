@@ -13,9 +13,8 @@ namespace ThumbicoCLI
 {
     using System;
     using System.Collections.Generic;
-    using System.Drawing;
-    using System.Drawing.Imaging;
     using System.IO;
+    using System.Windows.Media.Imaging;
     using ThumbicoCLI.Properties;
 
     /// <summary>
@@ -32,7 +31,7 @@ namespace ThumbicoCLI
         {
             this.Width = 256;
             this.Height = 256;
-            this.OutputName = "{n}{e}_{t}";
+            this.OutputName = "{n}{e}_thumbicon";
             this.ImageFormat = ImageFormat.Png;
             this.Flags = 0;
         }
@@ -105,7 +104,8 @@ namespace ThumbicoCLI
             Console.WriteLine(Resources.Processing, sourcePath);
 
             // MAIN FUNCTIONALITY! Try to generate the thumbail or icon
-            Bitmap bitmap = ShellThumbnail.GetThumbnail(sourcePath, this.Width, this.Height, this.Flags, out bool isIcon);
+            // Bitmap bitmap = ShellThumbnail.GetThumbnail(sourcePath, this.Width, this.Height, this.Flags, out bool isIcon);
+            BitmapSource bitmap = ShellThumbnail.GetThumbnail(sourcePath, this.Width, this.Height, this.Flags);
 
             // There was an error generating the thumnail
             if (bitmap == null)
@@ -125,7 +125,6 @@ namespace ThumbicoCLI
             string thumbiconName = this.OutputName
                 .Replace("{n}", Path.GetFileNameWithoutExtension(sourcePath))
                 .Replace("{e}", Path.GetExtension(sourcePath))
-                .Replace("{t}", isIcon ? "icon" : "thumbnail")
                 .Replace("{w}", bitmap.Width.ToString())
                 .Replace("{h}", bitmap.Height.ToString());
 
@@ -135,7 +134,8 @@ namespace ThumbicoCLI
             // Save the thumbicon in the correct image file format
             try
             {
-                bitmap.Save(thumbiconPath, this.ImageFormat);
+                // bitmap.Save(thumbiconPath, this.ImageFormat);
+                ImagingUtils.SaveBitmap(bitmap, thumbiconPath, this.ImageFormat);
             }
             catch (Exception e)
             {
@@ -145,7 +145,7 @@ namespace ThumbicoCLI
             }
 
             // Inform the user that the thumbicon image was saved
-            Console.WriteLine(isIcon ? Resources.IconSavedAs : Resources.ThumbnailSavedAs, thumbiconPath);
+            Console.WriteLine(Resources.ThumbiconSavedAs, thumbiconPath);
             Console.WriteLine();
         }
 

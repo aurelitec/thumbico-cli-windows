@@ -9,7 +9,7 @@
 //
 //----------------------------------------------------------------------------------------------------
 
-namespace ThumbicoCLI
+namespace ThumbicoCLI.Legacy
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

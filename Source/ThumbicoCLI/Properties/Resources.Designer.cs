@@ -88,15 +88,6 @@ namespace ThumbicoCLI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Icon saved as {0} √.
-        /// </summary>
-        internal static string IconSavedAs {
-            get {
-                return ResourceManager.GetString("IconSavedAs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Processing {0}....
         /// </summary>
         internal static string Processing {
@@ -106,11 +97,11 @@ namespace ThumbicoCLI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thumbnail saved as {0} √.
+        ///   Looks up a localized string similar to Thumbicon saved as {0} √.
         /// </summary>
-        internal static string ThumbnailSavedAs {
+        internal static string ThumbiconSavedAs {
             get {
-                return ResourceManager.GetString("ThumbnailSavedAs", resourceCulture);
+                return ResourceManager.GetString("ThumbiconSavedAs", resourceCulture);
             }
         }
     }
